@@ -8,6 +8,13 @@ import logging
 
 from . import url_handler
 
+gi.require_version('Gdk', '3.0')
+import gi.module
+
+# require X or Xwayland, since we haven't worked out how to access the
+# clipboard under Wayland yet:
+gi.module.get_introspection_module('Gdk').set_allowed_backends('x11')
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import GObject, Gtk, GLib, GdkPixbuf, Gdk, Gio
 
